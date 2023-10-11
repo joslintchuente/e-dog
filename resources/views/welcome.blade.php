@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
-
+        
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -21,6 +21,29 @@
         </style>
     </head>
     <body class="antialiased">
+        
+            <form method="POST" action="/inscription">
+                @csrf
+                <input type="text" name="nom" placeholder="nom" value="Tchuente">
+                <input type="text" name="prenom" placeholder="Champ 2" value="joslin jules">
+                <input type="password" name="mot_de_passe" placeholder="Champ 2" value="azerty123azerty">
+                <input type="email" name="email" value="joslintchuente@gmail.com">
+                <input type="text" name="ville" placeholder="Douala" value="DOUALA">
+                <input type="text" name="telephone" placeholder="657800752" value="657800752">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" >
+                <button type="submit">Envoyer</button>
+    
+            </form>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
